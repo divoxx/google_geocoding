@@ -1,0 +1,6 @@
+require 'json'
+require 'patron'
+require 'google_geocoding/errors'
+require 'google_geocoding/placemark'
+require 'google_geocoding/response'
+require 'google_geocoding/geocoder'

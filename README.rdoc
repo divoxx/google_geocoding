@@ -1,16 +1,12 @@
-= google_geocoding
+= GoogleGeocoding
 
-Description goes here.
+GoogleGeocoding is a small library for performing geocoding using the Google's HTTP geocoding API.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Usage Example
+
+  geo = GoogleGeocoding::Geocoder.new(:app_key => YOUR_API_KEY, :user_agent => YOUR_USER_AGENT)
+  res = geo.query("Union Square, San Francisco, CA")
+  res.placemarks # => [#<GoogleGeocoding::Placemark:0x100629598 @country_code="US", @country_name=["USA", "US"], @city="San Francisco", @accurracy=4, @coordinates=[-122.4074374, 37.7879938], @region="CA">]
 
 == Copyright
 

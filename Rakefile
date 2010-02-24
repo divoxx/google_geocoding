@@ -4,14 +4,16 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "google_geocoding"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "divoxx@gmail.com"
-    gem.homepage = "http://github.com/divoxx/google_geocoding"
-    gem.authors = ["Rodrigo Kochenburger"]
+    gem.name        = "google_geocoding"
+    gem.summary     = %Q{Google's geocoding library}
+    gem.description = %Q{GoogleGeocoding is a small library for performing geocoding using the Google's HTTP geocoding API}
+    gem.email       = "divoxx@gmail.com"
+    gem.homepage    = "http://github.com/divoxx/google_geocoding"
+    gem.authors     = ["Rodrigo Kochenburger"]
+    gem.add_dependency "json", ">= 1.2.0"
+    gem.add_dependency "patron", ">= 0.4.5"
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "yard", ">= 0"
+    gem.add_development_dependency "yard",  ">= 0.5.3"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
