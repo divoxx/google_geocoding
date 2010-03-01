@@ -26,7 +26,7 @@ module GoogleGeocoding
       if (200...300).include?(resp.status)
         Response.new(resp.body)
       else
-        raise GeocodeError.new(address, resp)
+        raise Errors::HttpError.new(address, resp)
       end
     end
   end
