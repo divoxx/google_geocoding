@@ -9,7 +9,7 @@ module GoogleGeocoding
     def initialize(options = {})
       @options = options
       @sess = Patron::Session.new
-      @sess.timeout = 5
+      @sess.timeout = options[:timeout] || 10
       @sess.base_url = "http://maps.google.com/maps/geo"
       @sess.headers['User-Agent'] = options[:user_agent]
     end
