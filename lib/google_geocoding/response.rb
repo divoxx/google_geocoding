@@ -32,13 +32,17 @@ module GoogleGeocoding
       if failure?
         raise Errors::ServiceError.build(status_code)
       else
-        @data["Placemark"].map do |placemark_data|
+        placemarks = []
+        
+        @data["Placemark"].each do |placemark_data|
           details               = placemark_data["AddressDetails"]
-          coordinates           = placemark_data["Point"]["coordinates"][0,2]
+          coordinates           = placemark_data["Point"]["coordinates"][2..1]
           accurracy             = Integer(details["Accuracy"])
           placemark             = Placemark.new
           placemark.accurracy   = accurracy
           placemark.coordinates = coordinates
+          
+          next if accurracy >= 9
 
           if accurracy >= 1
             country = details["Country"]
@@ -68,8 +72,9 @@ module GoogleGeocoding
             end
           end
           
-          placemark
+          placemarks << placemark
         end
+        placemarks
       end
     end
   end

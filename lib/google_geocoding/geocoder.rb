@@ -1,5 +1,9 @@
 module GoogleGeocoding    
   class Geocoder
+    def self.query(address, options = {})
+      self.new(options).query(address)
+    end
+    
     # Creates a new geocoder instance.
     # @see Geocoder#geocode
     def initialize(options = {})
