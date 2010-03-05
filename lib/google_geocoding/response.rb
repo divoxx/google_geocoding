@@ -36,7 +36,7 @@ module GoogleGeocoding
 
         @data["Placemark"].each do |placemark_data|
           details               = placemark_data["AddressDetails"]
-          coordinates           = placemark_data["Point"]["coordinates"][2..1]
+          coordinates           = placemark_data["Point"]["coordinates"][0..1].reverse
           accurracy             = Integer(details["Accuracy"])
           placemark             = Placemark.new
           placemark.accurracy   = accurracy
