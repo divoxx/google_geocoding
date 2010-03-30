@@ -1,8 +1,5 @@
 module GoogleGeocoding
   module Errors
-    # Base error for the geocoding service, all error should inherit from this one.
-    class BaseError < StandardError; end
-    
     # Http error, will be raised when the server returns with a status code outside the 200...300 range.
     class HttpError < BaseError
       def initialize(address, response)
