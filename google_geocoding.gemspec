@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{google_geocoding}
-  s.version = "0.1.5"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rodrigo Kochenburger"]
-  s.date = %q{2010-03-04}
+  s.date = %q{2010-03-30}
   s.description = %q{GoogleGeocoding is a small library for performing geocoding using the Google's HTTP geocoding API}
   s.email = %q{divoxx@gmail.com}
   s.extra_rdoc_files = [
@@ -25,21 +25,29 @@ Gem::Specification.new do |s|
      "VERSION",
      "google_geocoding.gemspec",
      "lib/google_geocoding.rb",
+     "lib/google_geocoding/address_component.rb",
      "lib/google_geocoding/errors.rb",
      "lib/google_geocoding/geocoder.rb",
-     "lib/google_geocoding/placemark.rb",
+     "lib/google_geocoding/request.rb",
      "lib/google_geocoding/response.rb",
-     "spec/google_geocoding_spec.rb",
+     "lib/google_geocoding/result.rb",
+     "spec/classes/request_spec.rb",
+     "spec/classes/response_spec.rb",
+     "spec/classes/result_spec.rb",
+     "spec/integration_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/divoxx/google_geocoding}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Google's geocoding library}
   s.test_files = [
-    "spec/google_geocoding_spec.rb",
+    "spec/classes/request_spec.rb",
+     "spec/classes/response_spec.rb",
+     "spec/classes/result_spec.rb",
+     "spec/integration_spec.rb",
      "spec/spec_helper.rb"
   ]
 
