@@ -1,10 +1,10 @@
-require File.expand_path("../spec_helper", __FILE__)
+require File.expand_path("../../spec_helper", __FILE__)
 
-describe GoogleGeocoding::Response do
+describe Response do
   before :each do
-    @result_inst  = mock(:result_instance)
+    @result_inst  = mock(:result_instance, :<< => nil)
     @result_class = mock(:result_class, :new => @result_inst)
-    @response     = GoogleGeocoding::Response.new(StringIO.new(DATA), @result_class)
+    @response     = Response.new(DATA, @result_class)
   end
   
   it "should provide status" do
@@ -20,7 +20,8 @@ describe GoogleGeocoding::Response do
   end
   
   it "should provide the results" do
-    @result_class.should_receive(:new).once.with(an_instance_of(Hash)).and_return(@result_inst)
+    args = {:types => ["street_address"], :address => "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA", :coordinates => [37.4219720, -122.0841430], :precision => "ROOFTOP"}
+    @result_class.should_receive(:new).once.with(args).and_return(@result_inst)
     @response.results.should be_instance_of(Array)
     @response.results.each { |item| item.should be(@result_inst) }
   end

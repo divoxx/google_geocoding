@@ -10,7 +10,7 @@ module GoogleGeocoding
       @options = options
       @sess = Patron::Session.new
       @sess.timeout = options[:timeout] || 10
-      @sess.base_url = "http://maps.google.com/maps/geo"
+      @sess.base_url = "http://maps.google.com/maps/api/geocode"
       @sess.headers['User-Agent'] = options[:user_agent]
     end
 
@@ -19,12 +19,11 @@ module GoogleGeocoding
     # @param [String, #to_s]
     # @return [Response]
     def query(address)
-      params = "?q=#{URI.encode(address.to_s)}"
-      params << "&key=#{@options[:api_key]}" if @options[:api_key]
-      resp = @sess.get(params)
+      request  = Request.new(:address => address, :sensor => false)
+      response = @sess.get("/json?#{request.query_string}")
   
-      if (200...300).include?(resp.status)
-        Response.new(resp.body)
+      if (200...300).include?(response.status)
+        Response.new(response.body)
       else
         raise Errors::HttpError.new(address, resp)
       end
