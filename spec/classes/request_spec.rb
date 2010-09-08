@@ -20,7 +20,7 @@ describe Request do
     end
     
     it "should return the query string" do
-      @request.query_string.should == "address=2+Townsend+St%2C+San+Francisco%2C+CA&sensor=false"
+      CGI.parse(@request.query_string).should == {"address" => ["2 Townsend St, San Francisco, CA"], "sensor" => ["false"]}
     end
   end
 end

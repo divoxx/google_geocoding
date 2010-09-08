@@ -6,11 +6,17 @@ module GoogleGeocoding
     
     def initialize(args = {})
       process_args(args)
-      @components = []
+      @components = Hash.new { |h,k| h[k] = [] }
     end
     
     def <<(component)
-      @components << component
+      component.types.each do |type|
+        @components[type.to_sym] << component
+      end
+    end
+    
+    def get(type)
+      @components[type.to_sym]
     end
     
     def each(&block)
