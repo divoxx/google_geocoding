@@ -7,7 +7,7 @@ module GoogleGeocoding
     # Creates a new geocoder instance.
     # @see Geocoder#geocode
     def initialize(options = {})
-      @options = options
+      @query_params = options.reject{ |key, _| ![:bounds, :region, :language].include?(key) }
       @sess = Patron::Session.new
       @sess.timeout = options[:timeout] || 10
       @sess.base_url = "http://maps.google.com/maps/api/geocode"
@@ -19,7 +19,7 @@ module GoogleGeocoding
     # @param [String, #to_s]
     # @return [Response]
     def query(address)
-      request  = Request.new(:address => address, :sensor => false)
+      request  = Request.new(@query_params.merge({:address => address, :sensor => false}))
       response = @sess.get("/json?#{request.query_string}")
   
       if (200...300).include?(response.status)
