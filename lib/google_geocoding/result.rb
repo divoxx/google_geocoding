@@ -20,7 +20,7 @@ module GoogleGeocoding
     end
     
     def each(&block)
-      @component.each(&block)
+      @components.each(&block)
     end
     
   private
